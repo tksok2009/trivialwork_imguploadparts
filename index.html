@@ -1,0 +1,91 @@
+<html>
+
+<header>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(function(){
+    var setFileInput = $('.imgInput');
+
+    setFileInput.each(function(){
+        var selfFile = $(this),
+        selfInput = $(this).find('input[type=file]');
+
+        selfInput.change(function(){
+            var file = $(this).prop('files')[0],
+            fileRdr = new FileReader(),
+            selfImg = selfFile.find('.imgView');
+
+            if(!this.files.length){
+                if(0 < selfImg.size()){
+                    selfImg.remove();
+                    return;
+                }
+            } else {
+                if(file.type.match('image.*')){
+                    if(!(0 < selfImg.size())){
+                        selfFile.append('<img alt="" class="imgView">');
+                    }
+                    var prevElm = selfFile.find('.imgView');
+                    fileRdr.onload = function() {
+                        prevElm.attr('src', fileRdr.result);
+                    }
+                    fileRdr.readAsDataURL(file);
+                } else {
+                    if(0 < selfImg.size()){
+                        selfImg.remove();
+                        return;
+                    }
+                }
+            }
+        });
+    });
+});
+</script>
+
+<style type="text/css">
+.imgView{
+  max-height: 150px;
+}
+</style>
+
+</header>
+
+<body>
+            <div class="file-select imgInput">
+              <label for="file1">
+                <input name="image[]" id="file1" type="file" size="30" style="ime-mode:disabled;display:none">
+                <img src="images/reference-input-file.png" alt="ファイルの添付" class="fullbanner mb10" style="max-width: 150px;">
+              </label>
+            </div>
+
+            <div class="file-select imgInput">
+              <label for="file2">
+                <input name="image[]" id="file2" type="file" size="30" style="ime-mode:disabled;display:none">
+                <img src="images/reference-input-file.png" alt="ファイルの添付" class="fullbanner mb10" style="max-width: 150px;">
+              </label>
+            </div>
+
+            <div class="file-select imgInput">
+              <label for="file3">
+                <input name="image[]" id="file3" type="file" size="30" style="ime-mode:disabled;display:none">
+                <img src="images/reference-input-file.png" alt="ファイルの添付" class="fullbanner mb10" style="max-width: 150px;">
+              </label>
+            </div>
+
+            <div class="file-select imgInput">
+              <label for="file4">
+                <input name="image[]" id="file4" type="file" size="30" style="ime-mode:disabled;display:none">
+                <img src="images/reference-input-file.png" alt="ファイルの添付" class="fullbanner mb10" style="max-width: 150px;">
+              </label>
+            </div>
+
+            <div class="file-select imgInput">
+              <label for="file5">
+                <input name="image[]" id="file5" type="file" size="30" style="ime-mode:disabled;display:none">
+                <img src="images/reference-input-file.png" alt="ファイルの添付" class="fullbanner mb10" style="max-width: 150px;">
+              </label>
+            </div>
+</body>
+</html>
+
