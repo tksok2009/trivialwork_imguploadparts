@@ -16,6 +16,9 @@ $(function(){
             fileRdr = new FileReader(),
             selfImg = selfFile.find('.imgView');
 
+            //refs#1 :add get param from filenames
+            filename = file.name;
+
             if(!this.files.length){
                 if(0 < selfImg.size()){
                     selfImg.remove();
@@ -25,6 +28,10 @@ $(function(){
                 if(file.type.match('image.*')){
                     if(!(0 < selfImg.size())){
                         selfFile.append('<img alt="" class="imgView">');
+
+                        //refs #1 : add finename text
+                        selfFile.append(filename);
+
                     }
                     var prevElm = selfFile.find('.imgView');
                     fileRdr.onload = function() {
